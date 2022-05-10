@@ -1,0 +1,27 @@
+{
+    "version": "@VERSION@",
+    "workloads": {
+      "foo": {
+        "description": ".NET SDK Workload for building Dotnet Foo applications.",
+        "packs": [
+          "Dotnet.Foo.Sdk",
+          "Dotnet.Foo.Ref",
+          "Dotnet.Foo.Runtime"
+        ]
+      }
+    },
+    "packs": {
+      "Dotnet.Foo.Sdk": {
+        "kind": "sdk",
+        "version": "@VERSION@"
+      },
+      "Dotnet.Foo.Ref": {
+        "kind": "framework",
+        "version": "@VERSION@"
+      },
+      "Dotnet.Foo.Runtime": {
+        "kind": "framework",
+        "version": "@VERSION@"
+      }
+    }
+  }

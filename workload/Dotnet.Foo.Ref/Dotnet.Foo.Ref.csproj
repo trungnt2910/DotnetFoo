@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+
+  <Import Project="../Shared/Common.targets" />
+  <Import Project="../Shared/Frameworks.targets" />
+
+  <PropertyGroup>
+    <Description>Dotnet Foo targeting pack</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(_FooRootDirectory)src/Dotnet.Foo/bin/$(Configuration)/net$(_FooNetVersion)/Dotnet.Foo.dll" />
+    <None Update="@(None)" CopyToOutputDirectory="PreserveNewest" Visible="false" Link="ref/$(_FooFullTfm)/%(FileName)%(Extension)" />
+    <_PackageFiles Include="@(None)" PackagePath="ref/$(_FooFullTfm)" TargetPath="ref/$(_FooFullTfm)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(_FooRootDirectory)src/Dotnet.Foo/Dotnet.Foo.csproj" />
+  </ItemGroup>
+
+</Project>

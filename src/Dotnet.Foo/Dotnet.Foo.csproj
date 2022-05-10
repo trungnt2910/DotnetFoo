@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net$(_FooNetVersion)</TargetFramework>
+    <!--  
+      Microsoft.DotNet.SharedFramework.Sdk requires our framework assemblies to be signed 
+      (to have a "public key token")
+    -->
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(_FooRootDirectory)/DotnetFoo.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+</Project>

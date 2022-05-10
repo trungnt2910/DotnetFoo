@@ -1,0 +1,52 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Register net6.0-foo1.0 TFM -->
+  <ItemGroup>
+    <SupportedPlatform Include="foo" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <_DefaultTargetPlatformVersion>@FOOVERSION@</_DefaultTargetPlatformVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetPlatformSupported>true</TargetPlatformSupported>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">$(_DefaultTargetPlatformVersion)</TargetPlatformVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SdkSupportedTargetPlatformVersion Include="@FOOVERSION@" />
+  </ItemGroup>
+
+  <!-- Register Foo runtime -->
+  <ItemGroup>
+    <KnownFrameworkReference
+      Include="Dotnet.Foo"
+      TargetFramework="net@FOONETVERSION@"
+      RuntimeFrameworkName="Dotnet.Foo"
+      DefaultRuntimeFrameworkVersion="**FromWorkload**"
+      LatestRuntimeFrameworkVersion="**FromWorkload**"
+      TargetingPackName="Dotnet.Foo.Ref"
+      TargetingPackVersion="**FromWorkload**"
+      RuntimePackNamePatterns="Dotnet.Foo.Runtime"
+      Profile="Foo"
+    />
+  </ItemGroup>
+
+  <!-- Reference Foo runtime -->
+  <ItemGroup Condition=" '$(DisableImplicitFrameworkReferences)' != 'true' ">
+    <FrameworkReference
+      Include="Dotnet.Foo"
+      IsImplicitlyDefined="true"
+      Pack="false"
+      PrivateAssets="All"
+    />
+  </ItemGroup>
+
+  <!-- Project properties -->
+  <PropertyGroup>
+    <_IsFooDefined>$([System.Text.RegularExpressions.Regex]::IsMatch('$(DefineConstants.Trim())', '(^|;)FOO($|;)'))</_IsFooDefined>
+    <DefineConstants Condition="!$(_IsFooDefined)">FOO;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+
+</Project>

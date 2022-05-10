@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+
+  <Import Project="../Shared/Common.targets" />
+  <Import Project="../Shared/Frameworks.targets" />
+
+  <PropertyGroup>
+    <Description>Dotnet Foo runtime pack</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(_FooRootDirectory)src/Dotnet.Foo/bin/$(Configuration)/net$(_FooNetVersion)/Dotnet.Foo.dll" />
+    <None Update="@(None)" CopyToOutputDirectory="PreserveNewest" Visible="false" Link="lib/$(_FooFullTfm)/%(FileName)%(Extension)" />
+    <_PackageFiles Include="@(None)" PackagePath="lib/$(_FooFullTfm)" TargetPath="lib/$(_FooFullTfm)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(_FooRootDirectory)src/Dotnet.Foo/Dotnet.Foo.csproj" />
+  </ItemGroup>
+
+</Project>

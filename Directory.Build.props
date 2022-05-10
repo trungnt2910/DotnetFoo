@@ -1,0 +1,10 @@
+<Project>
+  <PropertyGroup>
+    <_FooVersion>1.0</_FooVersion>
+    <_FooNetVersion>6.0</_FooNetVersion>
+    <_FooTfm>net$(_FooNetVersion)-foo</_FooTfm>
+    <_FooFullTfm>net$(_FooNetVersion)-foo$(_FooVersion)</_FooFullTfm>
+    <_FooRootDirectory>$(MSBuildThisFileDirectory)</_FooRootDirectory>
+    <_FooManifestVersionBand Condition=" '$(_FooManifestVersionBand)' == '' ">6.0.200</_FooManifestVersionBand>
+  </PropertyGroup>
+</Project>
