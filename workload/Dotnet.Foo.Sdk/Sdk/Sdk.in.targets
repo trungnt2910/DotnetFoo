@@ -29,6 +29,7 @@
       TargetingPackName="Dotnet.Foo.Ref"
       TargetingPackVersion="**FromWorkload**"
       RuntimePackNamePatterns="Dotnet.Foo.Runtime"
+      RuntimePackRuntimeIdentifiers="win-x64;win-x86;linux-x64;linux-x86;osx-x64;osx-x86"
       Profile="Foo"
     />
   </ItemGroup>
