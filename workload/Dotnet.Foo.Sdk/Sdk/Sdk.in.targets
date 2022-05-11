@@ -50,4 +50,14 @@
     <DefineConstants Condition="!$(_IsFooDefined)">FOO;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <!-- Must be self-contained. Framework-dependent builds cannot see our custom runtime -->
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier Condition=" '$(RuntimeIdentifier)' == '' and $([MSBuild]::IsOsPlatform('Windows')) and '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' ">win-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition=" '$(RuntimeIdentifier)' == '' and $([MSBuild]::IsOsPlatform('Windows')) and '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X86' ">win-x86</RuntimeIdentifier>
+    <RuntimeIdentifier Condition=" '$(RuntimeIdentifier)' == '' and $([MSBuild]::IsOsPlatform('Linux')) and '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' ">linux-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition=" '$(RuntimeIdentifier)' == '' and $([MSBuild]::IsOsPlatform('Linux')) and '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X86' ">linux-x86</RuntimeIdentifier>
+    <RuntimeIdentifier Condition=" '$(RuntimeIdentifier)' == '' and $([MSBuild]::IsOsPlatform('OSX')) and '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'X64' ">osx-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
 </Project>
